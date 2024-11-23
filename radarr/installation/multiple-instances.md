@@ -96,7 +96,7 @@ separate locations. {.is-warning}
 - [You must have Radarr already installed](#windows)
 - Radarr's shortcut must be configured with a `/data=` argument in the 'target' field to allow multiple instances.
 1. Navigate to the Startup Folder for the current user `%appdata%\Microsoft\Windows\Start Menu\Programs\Startup` and edit the existing shortcut if needed.
-2. Assuming you installed Radarr with default settings, on the C drive, it will look like this:
+1. Assuming you installed Radarr with default settings, on the C drive, it will look like this:
 
    C:\ProgramData\Radarr\bin\Radarr.exe /data=C:\ProgramData\Radarr
 
@@ -105,24 +105,24 @@ separate locations. {.is-warning}
 
 1. In `C:\ProgramData`, create a new folder for Radarr-4K's configuration files. Most use a similar place such as `C:\ProgramData\Radarr-4K`
 
-2. Next we go to the startup folder. Go to “Run” and enter `%appdata%\Microsoft\Windows\Start Menu\Programs\Startup` and then OK.
+1. Next we go to the startup folder. Go to “Run” and enter `%appdata%\Microsoft\Windows\Start Menu\Programs\Startup` and then OK.
    
-3. Create the Radarr-4K Tray App.
+1. Create the Radarr-4K Tray App.
    Right click the Radarr shortcut, and Create New Shortcut.
    Rename the shortcut “Radarr-4K.” Edit the target field of the new shortcut:
 
    `C:\ProgramData\Radarr\bin\Radarr.exe /data=C:\ProgramData\Radarr-4K`
 
-4. Double click the new shortcut to run and test. Continue to “Configuring Radarr-4K.”- Continue to [Configuring Radarr-4k](#windows-multi-config-second)
+1. Double click the new shortcut to run and test. Continue to “Configuring Radarr-4K.”- Continue to [Configuring Radarr-4k](#windows-multi-config-second)
 
 ### Configuring Radarr-4k {#windows-multi-config-second}
 
 1. Regardless of if you used the Service Method or the Tray App: Stop both services and both Apps
-2. Start Radarr-4k (Service or Tray App)
-3. Open up Radarr-4k and Navigate within the app to [Settings => General => Host](/radarr/settings/#host)
-4. Change `Port Number` from `7878` to a different port e.g. `7879` so Radarr and Radarr4k do not conflict
-5. You should now be able to start both apps
-6. Continue to [Dealing with Updates](#dealing-with-updates)
+1. Start Radarr-4k (Service or Tray App)
+1. Open up Radarr-4k and Navigate within the app to [Settings => General => Host](/radarr/settings/#host)
+1. Change `Port Number` from `7878` to a different port e.g. `7879` so Radarr and Radarr4k do not conflict
+1. You should now be able to start both apps
+1. Continue to [Dealing with Updates](#dealing-with-updates)
 
 ### Dealing with Updates
 
@@ -143,16 +143,16 @@ This can prevent updates from being applied and can result in the following erro
 - It checks the ports and if one is not online, it will (re-)start the scheduled task to launch Radarr.
 
 1. Create a new File and name it RadarrInstancesChecker.ps1 with the below code.
-2. Edit the script with your actual service names, IP, and ports. *If you are running in Tray mode, you must create Scheduled tasks to start each Radarr instance and use those Task names in the script below.*
-3. [Create a scheduled task](https://www.thewindowsclub.com/schedule-task-in-windows-7-task-scheduler) to run the script on a repeating schedule.
+1. Edit the script with your actual service names, IP, and ports. *If you are running in Tray mode, you must create Scheduled tasks to start each Radarr instance and use those Task names in the script below.*
+1. [Create a scheduled task](https://www.thewindowsclub.com/schedule-task-in-windows-7-task-scheduler) to run the script on a repeating schedule.
 
-4. Security Options: Enable `Run with highest privileges`
+1. Security Options: Enable `Run with highest privileges`
   - Otherwise the script will be unable to manipulate services
-5. Trigger: `On Launch`
-6. Repeat task every: `5` or `10` minutes
-7. Action: `Start a Program`
-8. Program/script: `powershell`
-9. Argument: `-File D:\RadarrInstancesChecker.ps1`
+1. Trigger: `On Launch`
+1. Repeat task every: `5` or `10` minutes
+1. Action: `Start a Program`
+1. Program/script: `powershell`
+1. Argument: `-File D:\RadarrInstancesChecker.ps1`
   - Be sure to use the full path to your script's location
 
 ```powershell
